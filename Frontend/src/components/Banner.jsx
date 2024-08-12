@@ -1,13 +1,18 @@
 import React from 'react'
 import banner from "../assets/book.png";
+import { useAuth } from '../context/AuthProvider';
+import { Link } from 'react-router-dom';
 function Banner() {
+  const [authUser,setAuthUser]=useAuth();
+
   return (
+
     <>
     <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row my-10 '>
         <div className='w-full order-2 md:order-1 md:w-1/2 mt-12 md:mt-32'>
        <div className='space-y-12'> 
-       <h1 className='text-4xl font-bold'> Hello, welcome here to learn something <span className='text-pink-500'>new everyday!!!</span></h1>
-       <p className='text-xl'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum ullam laborum nisi ipsam cum quidem, atque numquam explicabo voluptates minus a labore temporibus voluptatum? Illum deleniti eaque nulla maiores sequi.</p>
+       <h1 className='text-4xl font-bold'>Unlock a World of Knowledge, <span className='text-pink-500'>One Page at a Time!</span></h1>
+       <p className='text-xl'>Dive into an ocean of ideas, stories, and wisdom. Whether you're looking to enhance your skills, discover new worlds, or just find a moment of peace, our collection has something for you. Start your journey today and learn something new every day!</p>
        <label className="input input-bordered flex items-center gap-2">
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -22,8 +27,11 @@ function Banner() {
   <input type="text" className="grow" placeholder="Email" />
 </label>
        </div>
-       <button className="btn btn-secondary mt-6">Secondary</button>
-
+       {!authUser && (
+        <Link to="/signup">
+       <button  className="btn btn-secondary mt-6">Start Your Journey</button>
+       </Link>
+      )}
         </div>
         <div className='order-1 w-full md:w-1/2'>
             <img src={banner} className='w-82 h-82' alt="loading please wait" />
